@@ -97,7 +97,6 @@ Begin
   close(output);
   close(input);
 End;
-procedure cargarArchivos;
 Var
   stock,ventas:   archTProd;
   proveedores: archTProv;

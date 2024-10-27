@@ -49,14 +49,17 @@ Begin
         end;
   End;
   Close(ventas);
+
   rewrite(stock);
+
   for i:=1 to n do
     write(stock,newMaster[i]);
+
   write(stock,prodCentinela);
   Close(stock);
   writeln();
 End;
-Procedure generarListaCompras2(Var compras:archTCompras);
+Procedure generarListaCompras(Var compras:archTCompras);
 var
   minimos:      archTMins;
   stock:        archTProd;
@@ -66,20 +69,20 @@ var
 begin
   assign(stock,'Stock.dat');  assign(minimos,'Minimos.dat');  assign(compras,'Compras.dat');
   reset(stock);               reset(minimos);                 reWrite(compras);
-  read(stock,prodActual);
-  read(minimos,minActual);
+  read(stock,prodActual);     read(minimos,minActual);
   while(prodActual.idProd<>centinela)do
   begin
     if(prodActual.idProd=minActual.idProd)then
       begin
-        compraActual.idProd:=prodActual.idProd;
         if prodActual.cantProd<minActual.cantMin then
           begin
+            compraActual.idProd:=prodActual.idProd;
             if prodActual.cantProd<minActual.cantCrit then
               begin
                 compraActual.prioridad:=1;
                 compraActual.cantProd:=minActual.cantHolgura-prodActual.cantProd;
                 write(compras,compraActual);
+
                 compraActual.prioridad:=2;
                 compraActual.cantProd:=minActual.cantMax-minActual.cantHolgura;
                 write(compras,compraActual);
@@ -119,7 +122,7 @@ var
   compras: archTCompras;
   proveedores: archTProv;
   compraActual,compraSiguiente: tCompras;
-  provActual,provElegido: tProveedores;
+  provActual,provSiguiente,provElegido: tProveedores;
   posProv:longInt;
   errores:tVecId;
   cantErrores,i:byte;
@@ -130,50 +133,63 @@ begin
   cantErrores:=0;
 
   read(compras,compraActual);
-  read(proveedores,provElegido);
-  if provElegido.idProd = centinela then
+  read(proveedores,provActual);
+  if provActual.idProd = centinela then
     writeln('No hay proveedores disponibles')
+  else if compraActual.idProd = centinela then
+    writeln('No se debe rea;izar ninguna compra')
   else
   begin
     writeln(' PRODUCTO | PROVEEDOR   | CANTIDAD | TARDANZA |   PRECIO   |');
     while(compraActual.idProd<>centinela)do
     begin
-      if(compraActual.idProd = provElegido.idProd)then
+      if(compraActual.idProd = provActual.idProd)then
+      begin
+        read(compras,compraSiguiente);{lectura de la proxima compra en caso de compras fragmentadas}
+
+        if(compraActual.idProd=compraSiguiente.idProd)then
+          posProv:=FilePos(proveedores);{guardado de la posicion del primer proveedor para el producto para volver a comprar con el siguiente fragmento de la compra}
+
+        provElegido:=provActual;
+
+        read(proveedores,provSiguiente);
+
+        while provActual.idProd=provSiguiente.idProd do
         begin
-          read(compras,compraSiguiente);{lectura de la proxima compra en caso de compras fragmentadas}
-          if(compraActual.idProd=compraSiguiente.idProd)then
-            posProv:=FilePos(proveedores);{guardado de la posicion del primer proveedor para el producto para volver a comprar con el siguiente fragmento de la compra}
-          read(proveedores,provActual);
-          while provElegido.idProd=provActual.idProd do
+          if compraActual.prioridad=1 then
           begin
-            if compraActual.prioridad=1 then
-              begin
-                if (provElegido.tardanza>provActual.tardanza) OR ((provElegido.tardanza=provActual.tardanza) AND (provElegido.precio>provActual.precio))then
-                  provElegido:=provActual;
-                read(proveedores,provActual);
-              end
-            else
-              begin
-               if(provElegido.precio>provActual.precio)then
-                provElegido:=provActual;
-               read(proveedores,provActual);
-              end;
-          end;
-          writeln(compraActual.idProd:8,'  | ',provElegido.nombreProv,' | ',compraActual.cantProd:8,' | ',provElegido.tardanza:3,' dias | ',(provElegido.precio*compraActual.cantProd):11:2,'|');
-          if(compraActual.idProd=compraSiguiente.idProd)then
-            seek(proveedores,posProv);{posicionado en el primer proveedor para el producto fraccionado}
-          compraActual:=compraSiguiente;
+            if (provElegido.tardanza>provSiguiente.tardanza) OR ((provElegido.tardanza=provSiguiente.tardanza) AND (provElegido.precio>provSiguiente.precio))then
+              provElegido:=provSiguiente;
+          end
+          else
+            begin
+              if(provElegido.precio>provSiguiente.precio) OR ((provElegido.precio=provSiguiente.precio) AND (provElegido.tardanza>provSiguiente.tardanza))then
+                provElegido:=provSiguiente;
+            end;
+          read(proveedores,provSiguiente);
+        end;
+        writeln(compraActual.idProd:8,'  | ',provElegido.nombreProv,' | ',compraActual.cantProd:8,' | ',provElegido.tardanza:3,' dias | ',(provElegido.precio*compraActual.cantProd):11:2,'|');
+
+        if(compraActual.idProd=compraSiguiente.idProd)then
+        begin
+          seek(proveedores,posProv-1);{posicionado en el primer proveedor para el producto fraccionado}
+          read(proveedores,provSiguiente);
+        end;
+        provActual:=provSiguiente;
+        compraActual:=compraSiguiente;
         end
       else
-        if provElegido.idProd>compraActual.idProd then
+        if (provActual.idProd>compraActual.idProd)then
+        begin
+          if (cantErrores=0) OR (errores[cantErrores]<>compraActual.idProd) then
           begin
-            cantErrores+=1;
-            errores[cantErrores]:=compraActual.idProd;
-            read(compras,compraActual);
-
-          end
+              cantErrores+=1;
+              errores[cantErrores]:=compraActual.idProd;
+          end;
+          read(compras,compraActual);
+        end
         else
-          read(proveedores,provElegido);
+          read(proveedores,provActual);
     end;
   end;
   close(proveedores);
@@ -189,7 +205,7 @@ Var
 Begin
   Writeln('-----------------ERRORES------------------------------------------');
   controlDeVentas(stock);
-  generarListaCompras2(compras);
+  generarListaCompras(compras);
   writeln('-----------------------------------------------------------');
   resumenProveedoresOptimos();
   readln();

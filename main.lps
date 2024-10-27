@@ -9,9 +9,9 @@
         <Filename Value="main.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="6" Y="189"/>
-        <FoldState Value=" T330s2 PjcjR0 T0kIAD28"/>
-        <UsageCount Value="44"/>
+        <TopLine Value="195"/>
+        <CursorPos X="26" Y="208"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -19,120 +19,140 @@
         <UnitName Value="Tipos"/>
         <EditorIndex Value="1"/>
         <TopLine Value="2"/>
-        <CursorPos X="5" Y="32"/>
+        <CursorPos X="14" Y="6"/>
         <FoldState Value=" TC8I43 PFIF;"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cargadores.lpr"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="79"/>
-        <CursorPos Y="100"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="38"/>
+        <CursorPos X="94" Y="93"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="24">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="39" Column="87" TopLine="39"/>
-      </Position>
-      <Position>
-        <Filename Value="main.lpr"/>
-        <Caret Line="54" Column="2" TopLine="48"/>
+        <Caret Line="147" TopLine="137"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="38" Column="16" TopLine="14"/>
+        <Caret Line="149" TopLine="143"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="55" Column="11" TopLine="37"/>
+        <Caret Line="152" TopLine="143"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="181" Column="21"/>
+        <Caret Line="154" TopLine="144"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="159" Column="37" TopLine="148"/>
+        <Caret Line="156" TopLine="150"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="162" Column="82" TopLine="152"/>
+        <Caret Line="158" TopLine="150"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="167" Column="15" TopLine="121"/>
+        <Caret Line="165" TopLine="159"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="157" Column="22" TopLine="141"/>
+        <Caret Line="166" TopLine="159"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="212" Column="104" TopLine="192"/>
+        <Caret Line="168" TopLine="159"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="221" Column="11" TopLine="202"/>
-      </Position>
-      <Position>
-        <Filename Value="tipos.pas"/>
-        <Caret Line="98" Column="29" TopLine="79"/>
+        <Caret Line="156" TopLine="150"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="152" Column="12" TopLine="144"/>
+        <Caret Line="158" TopLine="150"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="206" Column="44" TopLine="196"/>
+        <Caret Line="165" TopLine="159"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="231" Column="28" TopLine="212"/>
+        <Caret Line="168" TopLine="159"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="119" Column="46" TopLine="62"/>
+        <Caret Line="156" TopLine="150"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="120" Column="3" TopLine="62"/>
-      </Position>
-      <Position>
-        <Filename Value="cargadores.lpr"/>
-        <Caret Line="93" Column="36" TopLine="79"/>
+        <Caret Line="170" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="125" Column="48" TopLine="124"/>
+        <Caret Line="172" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="177" Column="3" TopLine="162"/>
+        <Caret Line="177" TopLine="171"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="176" Column="21" TopLine="161"/>
+        <Caret Line="178" TopLine="171"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="166" Column="31" TopLine="162"/>
+        <Caret Line="143" TopLine="137"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="191" Column="18"/>
+        <Caret Line="145" TopLine="137"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="3" Column="19"/>
+        <Caret Line="181" TopLine="175"/>
       </Position>
       <Position>
         <Filename Value="main.lpr"/>
-        <Caret Line="2" Column="12"/>
+        <Caret Line="183" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="185" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="186" TopLine="176"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="187" TopLine="177"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="143" TopLine="137"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="145" TopLine="137"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="181" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="183" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="114" Column="4" TopLine="87"/>
       </Position>
     </JumpHistory>
     <RunParams>

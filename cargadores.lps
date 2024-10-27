@@ -9,10 +9,10 @@
         <Filename Value="cargadores.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="89"/>
-        <CursorPos X="43" Y="72"/>
+        <TopLine Value="76"/>
+        <CursorPos X="19" Y="82"/>
         <FoldState Value=" T350K1 PTL0z"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -22,7 +22,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="9"/>
         <CursorPos X="19" Y="16"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>

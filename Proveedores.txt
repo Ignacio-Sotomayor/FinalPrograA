@@ -10,8 +10,6 @@ GJB00 Coto        4000.53 8
 GJB00 EL gauchito 4100.21 9
 GJB00 Jaguar      3900.08 7
 GJB00 Rimoldi     3900.71 4
-GWG13 Coto        5000.29 10
-GWG13 Rimoldi     5000.69 11
 GWG13 Rimoldi     7000.47 6
 HXQ41 Bamboo      3500.51 6
 HXQ41 Coto        3600.48 5

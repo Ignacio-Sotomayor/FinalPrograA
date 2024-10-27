@@ -8,21 +8,21 @@
       <Unit>
         <Filename Value="cargadores.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="63"/>
-        <CursorPos X="43" Y="72"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="89"/>
+        <CursorPos X="63" Y="98"/>
         <FoldState Value=" T350K1 PTL0z"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="tipos.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Tipos"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="9"/>
         <CursorPos X="19" Y="16"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
