@@ -9,7 +9,7 @@ EWY86 Arcor      12
 FJR51 Monster    7
 FJR51 Monster    2
 FJR51 Monster    9
-GJB00 Pepsi      10
+GJB00 Pepsi      100
 GJB00 Pepsi      8
 GJB00 Pepsi      2
 GWG13 La Merced  5
@@ -45,8 +45,8 @@ USA72 Don Satur  12
 USA72 Don Satur  5
 USA72 Don Satur  3
 USA72 Don Satur  9
-XHS16 Jorguito   12
-XHS16 Jorguito   10
+XHS16 Jorgito    12
+XHS16 Jorgito    10
 YSZ28 Terrabusi  8
 YSZ28 Terrabusi  3
 YSZ28 Terrabusi  10

@@ -5,7 +5,7 @@ Procedure controlDeVentas(Var stock:archTProd);
 
 Var 
   n,i: byte;
-  prodActual,ventaActual,prodCentinela: tProducts;
+  prodActual,ventaActual: tProducts;
   newMaster:vecTProd;
   ventas: archTProd;
 Begin
@@ -13,7 +13,6 @@ Begin
   reset(stock);
   assign(ventas, 'Ventas.dat');
   reset(ventas);
-  prodCentinela.idProd := 'ZZZ99';
   n:=0;
   read(stock,prodActual);
   read(ventas,ventaActual);
@@ -27,7 +26,10 @@ Begin
           if prodActual.cantprod>=ventaActual.cantprod then
             newMaster[n].cantprod := prodActual.cantprod - ventaActual.cantprod
           else
-            newMaster[n].cantprod := 0;
+          begin
+                writeln('Se marco mal las cantidades del producto ', ventaActual.idProd ,' que se vendieron pues no puede ser mayor a las que se tenian');
+                newMaster[n].cantprod := 0;
+          end;
           read(stock, prodActual);
           read(ventas, ventaActual);
         End
@@ -55,7 +57,8 @@ Begin
   for i:=1 to n do
     write(stock,newMaster[i]);
 
-  write(stock,prodCentinela);
+  prodActual.idProd:=centinela;
+  write(stock,prodActual);
   Close(stock);
   writeln();
 End;
@@ -69,8 +72,7 @@ var
 begin
   assign(stock,'Stock.dat');  assign(minimos,'Minimos.dat');  assign(compras,'Compras.dat');
   reset(stock);               reset(minimos);                 reWrite(compras);
-  read(stock,prodActual);
-  read(minimos,minActual);
+  read(stock,prodActual);     read(minimos,minActual);
   while(prodActual.idProd<>centinela)do
   begin
     if(prodActual.idProd=minActual.idProd)then
@@ -145,50 +147,50 @@ begin
     while(compraActual.idProd<>centinela)do
     begin
       if(compraActual.idProd = provActual.idProd)then
+      begin
+        read(compras,compraSiguiente);{lectura de la proxima compra en caso de compras fragmentadas}
+
+        if(compraActual.idProd=compraSiguiente.idProd)then
+          posProv:=FilePos(proveedores);{guardado de la posicion del primer proveedor para el producto para volver a comprar con el siguiente fragmento de la compra}
+
+        provElegido:=provActual;
+
+        read(proveedores,provSiguiente);
+
+        while provActual.idProd=provSiguiente.idProd do
         begin
-          read(compras,compraSiguiente);{lectura de la proxima compra en caso de compras fragmentadas}
-
-          if(compraActual.idProd=compraSiguiente.idProd)then
-            posProv:=FilePos(proveedores);{guardado de la posicion del primer proveedor para el producto para volver a comprar con el siguiente fragmento de la compra}
-
-          provElegido:=provActual;
-
-          read(proveedores,provSiguiente);
-
-          while provActual.idProd=provSiguiente.idProd do
+          if compraActual.prioridad=1 then
           begin
-            if compraActual.prioridad=1 then
-              begin
-                if (provElegido.tardanza>provSiguiente.tardanza) OR ((provElegido.tardanza=provSiguiente.tardanza) AND (provElegido.precio>provSiguiente.precio))then
-                  provElegido:=provSiguiente;
-              end
-            else
-              begin
-               if(provElegido.precio>provSiguiente.precio) OR ((provElegido.precio=provSiguiente.precio) AND (provElegido.tardanza>provSiguiente.tardanza))then
-                provElegido:=provSiguiente;
-              end;
-            read(proveedores,provSiguiente);
-          end;
-          writeln(compraActual.idProd:8,'  | ',provElegido.nombreProv,' | ',compraActual.cantProd:8,' | ',provElegido.tardanza:3,' dias | ',(provElegido.precio*compraActual.cantProd):11:2,'|');
-
-          if(compraActual.idProd=compraSiguiente.idProd)then
+            if (provElegido.tardanza>provSiguiente.tardanza) OR ((provElegido.tardanza=provSiguiente.tardanza) AND (provElegido.precio>provSiguiente.precio))then
+              provElegido:=provSiguiente;
+          end
+          else
             begin
-              seek(proveedores,posProv-1);{posicionado en el primer proveedor para el producto fraccionado}
-              read(proveedores,provSiguiente);
+              if(provElegido.precio>provSiguiente.precio) OR ((provElegido.precio=provSiguiente.precio) AND (provElegido.tardanza>provSiguiente.tardanza))then
+                provElegido:=provSiguiente;
             end;
-          provActual:=provSiguiente;
-          compraActual:=compraSiguiente;
-        end
+          read(proveedores,provSiguiente);
+        end;
+        writeln(compraActual.idProd:8,'  | ',provElegido.nombreProv,' | ',compraActual.cantProd:8,' | ',provElegido.tardanza:3,' dias | ',(provElegido.precio*compraActual.cantProd):11:2,'|');
+
+        if(compraActual.idProd=compraSiguiente.idProd)then
+        begin
+          seek(proveedores,posProv-1);{posicionado en el primer proveedor para el producto fraccionado}
+          read(proveedores,provSiguiente);
+        end;
+        provActual:=provSiguiente;
+        compraActual:=compraSiguiente;
+      end
       else
         if (provActual.idProd>compraActual.idProd)then
-          begin
+        begin
           if (cantErrores=0) OR (errores[cantErrores]<>compraActual.idProd) then
-            begin
+          begin
               cantErrores+=1;
               errores[cantErrores]:=compraActual.idProd;
-            end;
+          end;
           read(compras,compraActual);
-          end
+        end
         else
           read(proveedores,provActual);
     end;

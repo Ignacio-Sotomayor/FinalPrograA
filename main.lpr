@@ -5,7 +5,7 @@ Procedure controlDeVentas(Var stock:archTProd);
 
 Var 
   n,i: byte;
-  prodActual,ventaActual,prodCentinela: tProducts;
+  prodActual,ventaActual: tProducts;
   newMaster:vecTProd;
   ventas: archTProd;
 Begin
@@ -13,7 +13,6 @@ Begin
   reset(stock);
   assign(ventas, 'Ventas.dat');
   reset(ventas);
-  prodCentinela.idProd := 'ZZZ99';
   n:=0;
   read(stock,prodActual);
   read(ventas,ventaActual);
@@ -27,7 +26,10 @@ Begin
           if prodActual.cantprod>=ventaActual.cantprod then
             newMaster[n].cantprod := prodActual.cantprod - ventaActual.cantprod
           else
-            newMaster[n].cantprod := 0;
+          begin
+                writeln('Se marco mal las cantidades del producto ', ventaActual.idProd ,' que se vendieron pues no puede ser mayor a las que se tenian');
+                newMaster[n].cantprod := 0;
+          end;
           read(stock, prodActual);
           read(ventas, ventaActual);
         End
@@ -55,7 +57,8 @@ Begin
   for i:=1 to n do
     write(stock,newMaster[i]);
 
-  write(stock,prodCentinela);
+  prodActual.idProd:=centinela;
+  write(stock,prodActual);
   Close(stock);
   writeln();
 End;
@@ -162,10 +165,8 @@ begin
               provElegido:=provSiguiente;
           end
           else
-            begin
-              if(provElegido.precio>provSiguiente.precio) OR ((provElegido.precio=provSiguiente.precio) AND (provElegido.tardanza>provSiguiente.tardanza))then
+          if(provElegido.precio>provSiguiente.precio) OR ((provElegido.precio=provSiguiente.precio) AND (provElegido.tardanza>provSiguiente.tardanza))then
                 provElegido:=provSiguiente;
-            end;
           read(proveedores,provSiguiente);
         end;
         writeln(compraActual.idProd:8,'  | ',provElegido.nombreProv,' | ',compraActual.cantProd:8,' | ',provElegido.tardanza:3,' dias | ',(provElegido.precio*compraActual.cantProd):11:2,'|');
@@ -177,7 +178,7 @@ begin
         end;
         provActual:=provSiguiente;
         compraActual:=compraSiguiente;
-        end
+      end
       else
         if (provActual.idProd>compraActual.idProd)then
         begin
@@ -204,7 +205,7 @@ Var
   compras: archTCompras;
 Begin
   Writeln('-----------------ERRORES------------------------------------------');
-  controlDeVentas(stock);
+  {controlDeVentas(stock);}
   generarListaCompras(compras);
   writeln('-----------------------------------------------------------');
   resumenProveedoresOptimos();

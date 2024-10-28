@@ -76,7 +76,7 @@ Begin
   close(output);
   close(input);
 End;
-Procedure cargadorMinOpertivo(Var output:archTMins);
+Procedure cargadorMinimos(Var output:archTMins);
 
 Var 
   actual,centinela : tMinimos;

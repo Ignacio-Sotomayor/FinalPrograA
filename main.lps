@@ -8,40 +8,32 @@
       <Unit>
         <Filename Value="main.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="195"/>
-        <CursorPos X="26" Y="208"/>
-        <UsageCount Value="49"/>
+        <CursorPos Y="123"/>
+        <FoldState Value=" T330y2 Pk6jX0 T0ibAI29]HMjJA:"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="tipos.pas"/>
         <UnitName Value="Tipos"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="2"/>
+        <TopLine Value="99"/>
         <CursorPos X="14" Y="6"/>
         <FoldState Value=" TC8I43 PFIF;"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cargadores.lpr"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="38"/>
-        <CursorPos X="94" Y="93"/>
-        <UsageCount Value="16"/>
+        <CursorPos X="49" Y="79"/>
+        <FoldState Value=" T350K2 Pi7i80#"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="main.lpr"/>
-        <Caret Line="147" TopLine="137"/>
-      </Position>
-      <Position>
-        <Filename Value="main.lpr"/>
-        <Caret Line="149" TopLine="143"/>
-      </Position>
       <Position>
         <Filename Value="main.lpr"/>
         <Caret Line="152" TopLine="143"/>
@@ -153,6 +145,14 @@
       <Position>
         <Filename Value="main.lpr"/>
         <Caret Line="114" Column="4" TopLine="87"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="168" Column="11" TopLine="152"/>
+      </Position>
+      <Position>
+        <Filename Value="main.lpr"/>
+        <Caret Line="213" TopLine="183"/>
       </Position>
     </JumpHistory>
     <RunParams>
